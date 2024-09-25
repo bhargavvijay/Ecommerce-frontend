@@ -1,6 +1,6 @@
 export function createOrder(item) {
   return new Promise(async (resolve) => {
-    const response = await fetch("https://ecommerce-backend-kyew.onrender.com/orders", {
+    const response = await fetch("/orders", {
       method: "POST",
       body: JSON.stringify(item),
       headers: { "content-type": "application/json" },
@@ -12,7 +12,7 @@ export function createOrder(item) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch("https://ecommerce-backend-kyew.onrender.com/orders/" + order.id, {
+    const response = await fetch("/orders/" + order.id, {
       method: "PATCH",
       body: JSON.stringify(order),
       headers: { "content-type": "application/json" },
@@ -33,7 +33,7 @@ export function fetchAllOrders({ pagination, sort }) {
   }
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
-    const response = await fetch("https://ecommerce-backend-kyew.onrender.com/orders?" + queryString);
+    const response = await fetch("/orders?" + queryString);
     const data = await response.json();
     const totalOrders = await response.headers.get("X-Total-Count");
     resolve({ data: { orders: data, totalOrders: +totalOrders } });
