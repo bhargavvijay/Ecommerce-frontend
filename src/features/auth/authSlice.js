@@ -60,7 +60,7 @@ export const EmailVerificationAsync = createAsyncThunk(
     console.log('okay slice')
     return response.data;
     }
-    catch{
+    catch(error){
       return rejectWithValue(error);
     }
 
